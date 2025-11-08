@@ -56,14 +56,21 @@ class FontPlugin implements IPluginTempl {
     this.tempPromise = axios
       .get(`${this.repoSrc}/api/fonts?populate=*&pagination[pageSize]=100`)
       .then((res) => {
-        const list = res.data.data.map((item: any) => {
-          return {
-            name: item.attributes.name,
-            type: item.attributes.type,
-            file: this.repoSrc + item.attributes.file.data.attributes.url,
-            img: this.repoSrc + item.attributes.img.data.attributes.url,
-          };
-        });
+        const list = res.data.data
+          .map((item: any) => {
+            const fileData = item?.attributes?.file?.data;
+            const imgData = item?.attributes?.img?.data;
+            const fileUrl = fileData?.attributes?.url;
+            const imgUrl = imgData?.attributes?.url;
+            return {
+              name: item?.attributes?.name,
+              type: item?.attributes?.type,
+              file: fileUrl ? this.repoSrc + fileUrl : '',
+              img: imgUrl ? this.repoSrc + imgUrl : '',
+            } as FontSource;
+          })
+          // 过滤掉没有文件地址的字体，避免空指针
+          .filter((font: FontSource) => !!font.file);
         this.cacheList = list;
         this.createFontCSS(list);
         return list;

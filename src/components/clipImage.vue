@@ -1,7 +1,7 @@
 <template>
   <div v-if="isOne && type === 'image'" class="attr-item-box">
     <div class="bg-item ivu-mb-8">
-      <Dropdown style="width: 270px" @on-click="addClipPath">
+      <Dropdown style="width: 270px" @on-click="addClipPath" transfer>
         <Button type="text" long>{{ $t('createClip') }}</Button>
         <template #list>
           <DropdownMenu>

@@ -138,9 +138,17 @@ onMounted(() => {
     .use(MaskPlugin);
 
   state.show = true;
-  // 默认打开标尺
+  // 默认在画布尺寸就绪后再开启标尺，避免 0 尺寸渲染
   if (state.ruler) {
-    canvasEditor.rulerEnable();
+    let enabledOnce = false;
+    const onSizeReady = () => {
+      if (!enabledOnce) {
+        enabledOnce = true;
+        canvasEditor.rulerEnable();
+        canvasEditor.off('sizeChange', onSizeReady);
+      }
+    };
+    canvasEditor.on('sizeChange', onSizeReady);
   }
 });
 

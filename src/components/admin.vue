@@ -8,7 +8,7 @@
 
 <template>
   <div style="display: inline-block" v-if="route.query.admin">
-    <Dropdown style="margin-left: 10px" @on-click="adminOperation">
+    <Dropdown style="margin-left: 10px" @on-click="adminOperation" transfer>
       <Button type="primary">
         {{ $t('admin.btnTitle') }}
         <Icon type="ios-arrow-down"></Icon>

@@ -46,6 +46,7 @@ const config = ({ mode }) => {
         inject: {
           data: {
             title: APP_TITLE,
+            isProd,
           },
         },
       }),
@@ -109,6 +110,9 @@ const config = ({ mode }) => {
     server: {
       port: 3000,
       open: true,
+      hmr: {
+        overlay: false,
+      },
       proxy: {
         '/fontFile': {
           target: 'https://github.com/',

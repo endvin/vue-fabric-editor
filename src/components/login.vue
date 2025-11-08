@@ -9,7 +9,7 @@
 <template>
   <div class="box">
     <!-- 登录后 -->
-    <Dropdown v-if="userName" @on-click="logoutHandle">
+    <Dropdown v-if="userName" @on-click="logoutHandle" transfer>
       <a href="javascript:void(0)">
         <Icon type="ios-person" size="20" />
         {{ userName }}

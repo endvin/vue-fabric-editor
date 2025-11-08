@@ -13,7 +13,7 @@
     <Button style="margin-left: 10px" type="text" @click="beforeClear">
       {{ $t('save.empty') }}
     </Button>
-    <Dropdown style="margin-left: 10px" @on-click="saveWith">
+    <Dropdown style="margin-left: 10px" @on-click="saveWith" transfer>
       <Button type="primary">
         {{ $t('save.down') }}
         <Icon type="ios-arrow-down"></Icon>

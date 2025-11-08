@@ -1,4 +1,10 @@
 import type { RouteRecordRaw } from 'vue-router';
+import Home from '@/views/home/index.vue';
+import Template from '@/views/template/index.vue';
+
+// 在开发环境使用静态组件，生产环境使用懒加载以优化首屏体积
+const HomeComp = import.meta.env.DEV ? Home : () => import('@/views/home/index.vue');
+const TemplateComp = import.meta.env.DEV ? Template : () => import('@/views/template/index.vue');
 
 import { setToken, autoLogin, logout } from '@/api/user';
 
@@ -23,11 +29,11 @@ const routes: RouteRecordRaw[] = [
       }
       return true;
     },
-    component: () => import('@/views/home/index.vue'),
+    component: HomeComp,
   },
   {
     path: '/template',
-    component: () => import('@/views/template/index.vue'),
+    component: TemplateComp,
   },
 ];
 

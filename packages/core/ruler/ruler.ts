@@ -157,10 +157,12 @@ class CanvasRuler {
    * 显示全部辅助线
    */
   public showGuideline() {
-    this?.options?.canvas?.getObjects(fabric.GuideLine.prototype.type).forEach((guideLine) => {
+    const size = this.getSize();
+    if (!size.width || !size.height) return;
+    this.options.canvas.getObjects(fabric.GuideLine.prototype.type).forEach((guideLine) => {
       guideLine.set('visible', true);
     });
-    this?.options?.canvas?.renderAll();
+    this.options.canvas.renderAll();
   }
 
   /**
@@ -217,18 +219,20 @@ class CanvasRuler {
    */
   public render() {
     // if (!this.options.enabled) return;
+    const size = this.getSize();
+    if (!size.width || !size.height) return;
     const vpt = this.options.canvas.viewportTransform;
     if (!vpt) return;
     // 绘制尺子
     this.draw({
       isHorizontal: true,
-      rulerLength: this.getSize().width,
+      rulerLength: size.width,
       // startCalibration: -(vpt[4] / vpt[0]),
       startCalibration: this.startCalibration?.x ? this.startCalibration.x : -(vpt[4] / vpt[0]),
     });
     this.draw({
       isHorizontal: false,
-      rulerLength: this.getSize().height,
+      rulerLength: size.height,
       // startCalibration: -(vpt[5] / vpt[3]),
       startCalibration: this.startCalibration?.y ? this.startCalibration.y : -(vpt[5] / vpt[3]),
     });

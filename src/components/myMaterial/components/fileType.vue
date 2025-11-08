@@ -12,7 +12,7 @@
     <span>{{ props.name }}</span>
     <div class="click-bg" @click="emit('select')"></div>
     <div class="more">
-      <Dropdown trigger="click" @on-click="operation">
+      <Dropdown trigger="click" @on-click="operation" transfer>
         <Button size="small" shape="circle" type="text">
           <Icon type="ios-more" :size="24" />
         </Button>

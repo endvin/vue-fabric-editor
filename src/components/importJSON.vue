@@ -8,7 +8,7 @@
 
 <template>
   <div style="display: inline-block">
-    <Dropdown @on-click="clickHandler">
+    <Dropdown @on-click="clickHandler" transfer>
       <a href="javascript:void(0)">
         {{ $t('importFiles.file') }}
         <Icon type="ios-arrow-down"></Icon>

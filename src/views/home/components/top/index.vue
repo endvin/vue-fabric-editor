@@ -9,12 +9,12 @@
       <Divider type="vertical" />
       <import-file></import-file>
       <Divider type="vertical" />
-      <Button type="text" to="/template" target="_blank">全部模板</Button>
+      <a href="#/template" target="_blank"><Button type="text">全部模板</Button></a>
       <Divider type="vertical" />
 
       <myTemplName></myTemplName>
       <!-- 标尺开关 -->
-      <Tooltip :content="$t('grid')">
+      <Tooltip :content="$t('grid')" transfer>
         <iSwitch v-model="toggleModel" size="small" class="switch"></iSwitch>
       </Tooltip>
       <Divider type="vertical" />
